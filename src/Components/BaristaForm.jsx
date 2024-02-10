@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import RecipeChoices from "./RecipeChoices";
+import drinksJson from "./drinks.json"
 
 const BaristaForm = () => {
   const [inputs, setInputs] = useState({
@@ -16,25 +17,50 @@ const BaristaForm = () => {
     blended: ["yes", "turbo", "no"],
   };
 
-  const onNewDrink = () => {};
+  const [currentDrink, setCurrentDrink] = useState('');
+  const [trueRecipe, setTrueRecipe] = useState({});
+
+  const onNewDrink = () => {
+    setInputs({
+        'temperature': '',
+        'milk': '',
+        'syrup': '',
+        'blended': '' });
+        
+      getNextDrink();
+  };
 
   const onCheckAnswer = () => {};
+
+  const getNextDrink = () => {
+    let randomDrinkIndex = Math.floor(Math.random() * drinksJson.drinks.length);
+    setCurrentDrink(drinksJson.drinks[randomDrinkIndex].name);
+    setTrueRecipe(drinksJson.drinks[randomDrinkIndex].ingredients);
+  }
 
   return (
     <div>
       <h2>Hi, I'd like to order a:</h2>
+      <div className="drink-container">
+        <h2 classname="mini-header">{currentDrink}</h2>
+        <button
+          type="new-drink-button"
+          className="button newdrink"
+          onClick={onNewDrink}
+        >🔄</button>
+      </div>
       <form>
         <button
           type="submit"
           className="button submit"
-          onClick={onCheckAnswer()}
+          onClick={onCheckAnswer}
         >
           Check Answer
         </button>
         <button
           type="new-drink-button"
           className="button submit"
-          onClick={onNewDrink()}
+          onClick={onNewDrink}
         >
           New Drink
         </button>
