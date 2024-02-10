@@ -40,3 +40,41 @@
 .read-the-docs {
   color: #888;
 }
+
+.container, .mini-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container {
+  align-items: flex-start;
+  margin: auto;
+  position: relative
+}
+
+.mini-container {
+  flex-direction: column;
+  margin: 50px
+}
+
+#wrong {
+  width: 100%;
+  height: 100%;
+  background-color: lightcoral;
+}
+
+#correct {
+  width: 100%;
+  height: 100%;
+  background-color: lightgreen;
+}
+
+.answer-space {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+li {
+  list-style: none;
+}
